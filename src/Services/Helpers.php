@@ -11,19 +11,15 @@ class Helpers
         require __DIR__ . '/../Support/helpers.php';
     }
 
-    public static function httpBasicAuthInstance(): TwillHttpBasicAuth
+    public static function instance(): TwillHttpBasicAuth
     {
-        if (!app()->bound('http-basic-auth')) {
-            app()->singleton('http-basic-auth', fn() => new TwillHttpBasicAuth());
-        }
-
-        return app('http-basic-auth');
+        return app(TwillHttpBasicAuth::class);
     }
 
     public static function viewShare(): void
     {
-        $httpBasicAuth = Helpers::httpBasicAuthInstance();
+        $httpBasicAuth = Helpers::instance();
 
-        view()->share('TwillHttpBasicAuth', $httpBasicAuth->config() + ['asset' => $httpBasicAuth->asset()]);
+        view()->share('twillHttpBasicAuth', $httpBasicAuth->config() + ['asset' => $httpBasicAuth->asset()]);
     }
 }

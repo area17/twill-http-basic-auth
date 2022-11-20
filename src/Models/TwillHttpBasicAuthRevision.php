@@ -6,5 +6,5 @@ use A17\Twill\Models\Revision;
 
 class TwillHttpBasicAuthRevision extends Revision
 {
-    protected $table = 'twill_ggl_captcha_revisions';
+    protected $table = 'twill_basic_auth_revisions';
 }

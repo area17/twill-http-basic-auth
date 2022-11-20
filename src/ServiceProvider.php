@@ -6,6 +6,7 @@ use Illuminate\Support\Str;
 use A17\Twill\Facades\TwillCapsules;
 use A17\Twill\TwillPackageServiceProvider;
 use A17\TwillHttpBasicAuth\Services\Helpers;
+use A17\TwillHttpBasicAuth\Support\TwillHttpBasicAuth;
 
 class ServiceProvider extends TwillPackageServiceProvider
 {
@@ -32,6 +33,8 @@ class ServiceProvider extends TwillPackageServiceProvider
             $namespace,
             $this->getPackageDirectory() . '/src',
         );
+
+        app()->singleton(TwillHttpBasicAuth::class, fn() => new TwillHttpBasicAuth());
     }
 
     public function registerViews(): void
@@ -41,8 +44,14 @@ class ServiceProvider extends TwillPackageServiceProvider
 
     public function registerConfig(): void
     {
+        $package = 'twill-http-basic-auth';
+
+        $path = __DIR__ . "/config/{$package}.php";
+
+        $this->mergeConfigFrom($path, $package);
+
         $this->publishes([
-            __DIR__ . '/config/twill-http-basic-auth.php' => config_path('twill-http-basic-auth.php'),
+            $path => config_path("{$package}.php"),
         ]);
     }
 }

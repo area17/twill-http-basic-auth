@@ -14,25 +14,4 @@ class TwillHttpBasicAuthRepository extends ModuleRepository
     {
         $this->model = $model;
     }
-
-    public function theOnlyOne(): TwillHttpBasicAuth
-    {
-        $record = TwillHttpBasicAuth::query()
-            ->published()
-            ->orderBy('id')
-            ->first();
-
-        return $record ?? $this->generate();
-    }
-
-    private function generate(): TwillHttpBasicAuth
-    {
-        return app(self::class)->create([
-            'site_key' => null,
-
-            'private_key' => null,
-
-            'published' => true,
-        ]);
-    }
 }

@@ -33,7 +33,7 @@
 
     <br>
 
-    <div>Site key: {{ $TwillHttpBasicAuth['keys']['site'] }}</div>
+    <div>Site key: {{ $TwillHttpBasicAuth['keys']['username'] }}</div>
 </form>
 
 @if ($TwillHttpBasicAuth['enabled'])
@@ -44,7 +44,7 @@
 
         function onSubmitClick(e) {
             grecaptcha.ready(function() {
-                grecaptcha.execute('{{ $TwillHttpBasicAuth['keys']['site'] }}', {
+                grecaptcha.execute('{{ $TwillHttpBasicAuth['keys']['username'] }}', {
                     action: 'submit'
                 }).then(function(token) {
                     document.getElementById("g-recaptcha-response").value = token;
