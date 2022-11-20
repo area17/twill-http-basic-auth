@@ -85,7 +85,6 @@ class TwillHttpBasicAuth extends Model
 
     public function getFromDotEnvAttribute(): string
     {
-        return 'change this';
-        //return TwillHttpBasicAuthFacade::hasDotEnv() ? 'yes' : 'no';
+        return TwillHttpBasicAuthFacade::hasDotEnv() ? 'yes' : 'no';
     }
 }
