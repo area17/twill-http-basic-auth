@@ -15,11 +15,4 @@ class Helpers
     {
         return app(TwillHttpBasicAuth::class);
     }
-
-    public static function viewShare(): void
-    {
-        $httpBasicAuth = Helpers::instance();
-
-        view()->share('twillHttpBasicAuth', $httpBasicAuth->config() + ['asset' => $httpBasicAuth->asset()]);
-    }
 }

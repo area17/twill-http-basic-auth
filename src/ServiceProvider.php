@@ -62,10 +62,15 @@ class ServiceProvider extends TwillPackageServiceProvider
     public function configureMiddeleware(): void
     {
         if (config('twill-http-basic-auth.middleware.automatic')) {
-            /** @phpstan-ignore-next-line */
+            /**
+             * @phpstan-ignore-next-line
+             * @var \Illuminate\Foundation\Http\Kernel $kernel
+             */
             $kernel = $this->app[Kernel::class];
 
-            $kernel->pushMiddleware(Middleware::class);
+            foreach (config('twill-http-basic-auth.middleware.groups', []) as $group) {
+                $kernel->appendMiddlewareToGroup($group, config('twill-http-basic-auth.middleware.class'));
+            }
         }
     }
 }

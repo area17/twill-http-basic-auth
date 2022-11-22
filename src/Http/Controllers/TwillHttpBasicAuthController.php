@@ -84,12 +84,14 @@ class TwillHttpBasicAuthController extends ModuleController
 
         $currentDomain = TwillHttpBasicAuthFacade::getDomain(URL::current());
 
+        /** @phpstan-ignore-next-line  */
         app(TwillHttpBasicAuthRepository::class)->create([
             'domain' => '*',
             'published' => false,
         ]);
 
         if (filled($currentDomain)) {
+            /** @phpstan-ignore-next-line  */
             app(TwillHttpBasicAuthRepository::class)->create([
                 'domain' => $currentDomain,
                 'published' => false,
@@ -97,6 +99,7 @@ class TwillHttpBasicAuthController extends ModuleController
         }
 
         if (filled($appDomain) && $appDomain !== $currentDomain) {
+            /** @phpstan-ignore-next-line  */
             app(TwillHttpBasicAuthRepository::class)->create([
                 'domain' => $appDomain,
                 'published' => false,

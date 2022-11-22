@@ -11,6 +11,9 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use A17\TwillHttpBasicAuth\Models\Behaviors\Encrypt;
 use A17\TwillHttpBasicAuth\Support\Facades\TwillHttpBasicAuth as TwillHttpBasicAuthFacade;
 
+/**
+ * @property string|null $domain
+ */
 class TwillHttpBasicAuth extends Model
 {
     use HasRevisions;
