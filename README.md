@@ -1,5 +1,29 @@
 # HTTP Basic Auth Twill Capsule
 
+This Twill Capsule is intended to enable developers to configure Basic Auth on their applications. 
+
+## Domains
+
+You add as many domains as you need and configure different passwords for each. Once you enable the `all domains (*)` entry, the same configuration will be used for all, and all other domains will be hidden.
+
+## Middleware
+
+A middleware is automatically added to all `web` routes, but you can configure this behaviour or even disable it to configure your middleware yourself:  
+
+``` php
+'middleware' => [
+    'automatic' => true,
+
+    'groups' => ['web'],
+
+    'class' => \A17\TwillHttpBasicAuth\Http\Middleware::class,
+],
+```
+
+## Using authentication
+
+If you don't want to share a single username and password with everyone that will access your pages, you can configure the package to allow existing users, both on Twill (CMS) and/or Laravel (frontend), to use their own passwords to pass Basic Auth.
+
 ## Installing
 
 ### Require the Composer package:
@@ -28,58 +52,17 @@ public function register()
 }
 ```
 
-#### Create debugging routes to check if it's all good
+#### .env 
 
-```php
-Route::prefix('/debug')->group(function () {
-    Route::get('/http-basic-auth', [A17\TwillHttpBasicAuth\Http\Controllers\TwillHttpBasicAuthFrontController::class, 'show'])->name(
-        'http-basic-auth.show',
-    );
-
-    Route::post('/http-basic-auth', [A17\TwillHttpBasicAuth\Http\Controllers\TwillHttpBasicAuthFrontController::class, 'store'])->name(
-        'http-basic-auth.store',
-    );
-});
-```
-
-#### Translate validation messages on validation.php
-
-```php
-'http_basic_auth' => 'Failed invisible Google reCAPTCHA, please try again.',
-```
-
-#### Sharing it in your views
-
-To have a `$TwillHttpBasicAuth` shared on your views, you can call this helper on your `AppServiceProvider`: 
-
-``` php
-\A17\TwillHttpBasicAuth\Services\Helpers::viewShare()
-```
-
-#### Test it out
-
-Head to: http://site.com/debug/http-basic-auth
-
-#### Captcha keys works both on .env or in the CMS settings, but .env trumps the CMS settings
+The configuration works both on `.env` or in the CMS settings. If you set them on `.env` the CMS settings will be disabled and overloded by `.env`. 
 
 ```dotenv
-TWILL_GOOGLE_RECAPTCHA_SITE_KEY=61df2g3hjkj7hgf6df54g3hj2kl3k4j5h6G
-TWILL_GOOGLE_RECAPTCHA_PRIVATE_KEY=6Lg5h43jkl45k6jh7g6h5j4kl3nj5k4l3P
-TWILL_GOOGLE_RECAPTCHA_ENABLED=true
-```
-
-#### Check the working form example
-
-File: app/Twill/Capsules/GoogleRecaptchas/resources/views/front/form.blade.php
-
-#### Use the validator
-
-```php
-use A17\TwillHttpBasicAuth\Support\Validator as GoogleRecaptchaValidator;
-
-$request->validate([
-    'g-recaptcha-response' => ['required', 'string', new GoogleRecaptchaValidator()],
-]);
+TWILL_HTTP_BASIC_AUTH_ENABLED=true
+TWILL_HTTP_BASIC_AUTH_USERNAME=frontend
+TWILL_HTTP_BASIC_AUTH_PASSWORD=secret
+TWILL_HTTP_BASIC_AUTH_RATE_LIMITING_ATTEMPTS=5
+TWILL_HTTP_BASIC_AUTH_TWILL_DATABASE_LOGIN_ENABLED=true
+TWILL_HTTP_BASIC_AUTH_LARAVEL_DATABASE_LOGIN_ENABLED=true
 ```
 
 ## Contribute
