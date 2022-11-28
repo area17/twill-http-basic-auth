@@ -1,6 +1,6 @@
 {
   "name": "area17/twill-http-basic-auth",
-  "description": "A Twill Capsule to add and handle Google reCAPTCHA",
+  "description": "A Twill Capsule to add and handle HTTP Basic Auth",
   "homepage": "https://github.com/area17/twill-http-basic-auths",
   "license": "MIT",
   "require": {
