@@ -83,7 +83,15 @@ class TwillHttpBasicAuth extends Model
 
     public function getStatusAttribute(): string
     {
-        return $this->published && $this->configured ? 'protected' : 'unprotected';
+        if ($this->published && $this->configured) {
+            return 'protected';
+        }
+
+        if ($this->domain === '*') {
+            return 'disabled';
+        }
+
+        return 'unprotected';
     }
 
     public function getFromDotEnvAttribute(): string
