@@ -12,6 +12,11 @@ return [
         'password' => env('TWILL_HTTP_BASIC_AUTH_PASSWORD'),
     ],
 
+    'inputs' => [
+        'email' => ['type' => 'text'],
+        'password' => ['type' => 'password'],
+    ],
+
     'middleware' => [
         'automatic' => true,
 
