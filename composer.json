@@ -2,7 +2,7 @@
   "name": "area17/twill-http-basic-auth",
   "description": "A Twill Capsule to add and handle HTTP Basic Auth",
   "homepage": "https://github.com/area17/twill-http-basic-auths",
-  "license": "MIT",
+  "license": "Apache-2.0",
   "require": {
     "php": ">=8.0",
     "area17/twill": "^2.7|^3.0",
