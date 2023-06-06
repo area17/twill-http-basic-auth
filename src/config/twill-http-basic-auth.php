@@ -13,7 +13,7 @@ return [
     ],
 
     'inputs' => [
-        'email' => ['type' => 'text'],
+        'username' => ['type' => 'text'],
         'password' => ['type' => 'password'],
     ],
 
@@ -25,6 +25,7 @@ return [
         'class' => \A17\TwillHttpBasicAuth\Http\Middleware::class,
     ],
 
+    // not implemented
     'routes' => [
         'ignore' => [
             'paths' => ['/admin/*', '/api/v1/*'],
