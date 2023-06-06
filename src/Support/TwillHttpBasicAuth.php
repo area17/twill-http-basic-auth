@@ -55,7 +55,7 @@ class TwillHttpBasicAuth
         return $this->enabled ??
             ($this->hasDotEnv() ? $this->config('enabled') : true) &&
                 $this->isConfigured() &&
-                (!$this->hasDotEnv() || $this->readFromDatabase('published'));
+                ($this->hasDotEnv() || $this->readFromDatabase('published'));
     }
 
     public function password(bool $force = false): string|null
