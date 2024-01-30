@@ -8,7 +8,11 @@ This Twill Capsule is intended to enable developers to configure Basic Auth on t
 
 ## Domains
 
-You add as many domains as you need and configure different passwords for each. Once you enable the `all domains (*)` entry, the same configuration will be used for all, and all other domains will be hidden.
+You add as many domains as you need and configure different passwords for each. 
+
+## One config for all
+
+Once you enable the `all domains (*)` entry, the same configuration will be used for all domains available, and all other domain configurations will be hidden.
 
 ## Middleware
 
