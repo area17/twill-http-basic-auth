@@ -59,7 +59,7 @@ class TwillHttpBasicAuthController extends ModuleController
     /**
      * @return array|\Illuminate\View\View|RedirectResponse
      */
-    public function index(?int $parentModuleId = null): mixed
+    public function index(int|null $parentModuleId = null): mixed
     {
         $this->generateDomains();
 
