@@ -25,13 +25,6 @@ return [
         'class' => \A17\TwillHttpBasicAuth\Http\Middleware::class,
     ],
 
-    // not implemented
-    'routes' => [
-        'ignore' => [
-            'paths' => ['/admin/*', '/api/v1/*'],
-        ],
-    ],
-
     'database-login' => [
         'twill' => [
             'enabled' => env('TWILL_HTTP_BASIC_AUTH_TWILL_DATABASE_LOGIN_ENABLED', false),
