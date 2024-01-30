@@ -30,15 +30,6 @@ class TwillHttpBasicAuth
 
     protected TwillHttpBasicAuthModel|null $current = null;
 
-    public function __construct()
-    {
-        //        $this->setConfigured();
-        //
-        //        $this->setEnabled();
-        //
-        //        $this->configureViews();
-    }
-
     public function config(string|null $key = null, mixed $default = null): mixed
     {
         $this->config ??= filled($this->config) ? $this->config : (array) config('twill-http-basic-auth');
