@@ -1,6 +1,6 @@
 # HTTP Basic Auth Twill Capsule
 
-This Twill Capsule is intended to enable developers to configure Basic Auth on their applications. 
+This Twill Capsule is intended to enable developers to configure Basic Auth on their applications.
 
 ![screenshot 1](docs/screenshot01.png)
 
@@ -12,7 +12,7 @@ You add as many domains as you need and configure different passwords for each. 
 
 ## Middleware
 
-A middleware is automatically added to all `web` routes, but you can configure this behaviour or even disable it to configure your middleware yourself:  
+A middleware is automatically added to all `web` routes, but you can configure this behaviour or even disable it to configure your middleware yourself:
 
 ``` php
 'middleware' => [
@@ -29,6 +29,14 @@ A middleware is automatically added to all `web` routes, but you can configure t
 If you don't want to share a single username and password with everyone that will access your pages, you can configure the package to allow existing users, both on Twill (CMS) and/or Laravel (frontend), to use their own passwords to pass Basic Auth.
 
 ## Installing
+
+## Supported Versions
+Composer will manage this automatically for you, but these are the supported versions between Twill and this package.
+
+| Twill Version | HTTP Basic Auth Capsule |
+|---------------|-------------------------|
+| 3.x           | 2.x                     |
+| 2.x           | 1.x                     |
 
 ### Require the Composer package:
 
@@ -56,9 +64,9 @@ public function register()
 }
 ```
 
-#### .env 
+#### .env
 
-The configuration works both on `.env` or in the CMS settings. If you set them on `.env` the CMS settings will be disabled and overloded by `.env`. 
+The configuration works both on `.env` or in the CMS settings. If you set them on `.env` the CMS settings will be disabled and overloded by `.env`.
 
 ```dotenv
 TWILL_HTTP_BASIC_AUTH_ENABLED=true
