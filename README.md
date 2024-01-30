@@ -8,7 +8,7 @@ This Twill Capsule is intended to enable developers to configure Basic Auth on t
 
 ## Domains
 
-You add as many domains as you need and configure different passwords for each. 
+You add as many domains as you need and configure different passwords for each. You can have the https://site.com, for instance, unprotected to allow public access to it, and block access to https://origin.site.com and https://admin.site.com to only allow access to people with an account, and those that have access to the HTTP Basic Auth username and password. 
 
 ## One config for all
 
