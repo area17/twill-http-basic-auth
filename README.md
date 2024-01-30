@@ -76,7 +76,6 @@ You can configure it both via CMS settings or the on `.env` file. If you set the
 TWILL_HTTP_BASIC_AUTH_ENABLED=true
 TWILL_HTTP_BASIC_AUTH_USERNAME=frontend
 TWILL_HTTP_BASIC_AUTH_PASSWORD=secret
-TWILL_HTTP_BASIC_AUTH_RATE_LIMITING_ATTEMPTS=5
 ```
 
 ### Database login
@@ -85,6 +84,14 @@ You can configure the package to allow users pass HTTP Auth Basic with their exi
 ```dotenv
 TWILL_HTTP_BASIC_AUTH_TWILL_DATABASE_LOGIN_ENABLED=true
 TWILL_HTTP_BASIC_AUTH_LARAVEL_DATABASE_LOGIN_ENABLED=true
+```
+
+### Rate limting
+
+The package will also, by default, rate limit users to max of 500 requests per minute to each domain. You can configure it using this `.env` variable:
+
+```dotenv
+TWILL_HTTP_BASIC_AUTH_RATE_LIMITING_ATTEMPTS=5
 ```
 
 By requiring users to have an enabled account in Twill (or Laravel) to access a protected website, this becomes an additional security feature. It also allows you to avoid disclosing the same username and password to everyone who is authorized to view the site.
