@@ -58,7 +58,7 @@ class TwillHttpBasicAuthController extends ModuleController
 
     /**
      * @param int|null $parentModuleId
-     * @return array|\Illuminate\View\View|RedirectResponse
+     * @return array|\Illuminate\Contracts\View\View|\Illuminate\View\View|RedirectResponse|\Illuminate\Http\JsonResponse
      */
     public function index($parentModuleId = null)
     {
