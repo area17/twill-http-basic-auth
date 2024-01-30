@@ -64,18 +64,26 @@ public function register()
 }
 ```
 
-#### .env 
+#### Configuring via the `.env` file
 
-The configuration works both on `.env` or in the CMS settings. If you set them on `.env` the CMS settings will be disabled and overloded by `.env`. 
+You can configure it both via CMS settings or the on `.env` file. If you set them on `.env` the CMS settings will be disabled and overloded by the `.env`.
 
 ```dotenv
 TWILL_HTTP_BASIC_AUTH_ENABLED=true
 TWILL_HTTP_BASIC_AUTH_USERNAME=frontend
 TWILL_HTTP_BASIC_AUTH_PASSWORD=secret
 TWILL_HTTP_BASIC_AUTH_RATE_LIMITING_ATTEMPTS=5
+```
+
+### Database login 
+You can configure the package to allow users pass HTTP Auth Basic with their existing email and password, by just enabling the feature on the `.env` file:   
+
+```dotenv
 TWILL_HTTP_BASIC_AUTH_TWILL_DATABASE_LOGIN_ENABLED=true
 TWILL_HTTP_BASIC_AUTH_LARAVEL_DATABASE_LOGIN_ENABLED=true
 ```
+
+By requiring users to have an enabled account in Twill (or Laravel) to access a protected website, this becomes an additional security feature. It also allows you to avoid disclosing the same username and password to everyone who is authorized to view the site.  
 
 ## Contribute
 
