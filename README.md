@@ -37,10 +37,10 @@ If you don't want to share a single username and password with everyone that wil
 ## Supported Versions
 Composer will manage this automatically for you, but these are the supported versions between Twill and this package.
 
-| Twill Version | HTTP Basic Auth Capsule |
-|---------------|-------------------------|
-| 3.x           | 2.x                     |
-| 2.x           | 1.x                     |
+| Twill Version | HTTP Basic Auth Capsule | Installing with Composer                             | 
+|---------------|-------------------------|------------------------------------------------------|
+| 3.x           | 2.x                     | composer require area17/twill-http-basic-auth:"^2.0" |
+| 2.x           | 1.x                     | composer require area17/twill-http-basic-auth:"^1.0" |
 
 ### Require the Composer package:
 
