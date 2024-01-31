@@ -16,7 +16,7 @@ use A17\TwillHttpBasicAuth\Support\Facades\TwillHttpBasicAuth as TwillHttpBasicA
 
 class TwillHttpBasicAuthController extends ModuleController
 {
-    protected $moduleName = 'twillHttpBasicAuth';
+    protected $moduleName = 'twillHttpBasicAuths';
 
     protected $titleColumnKey = 'domain_string';
 
