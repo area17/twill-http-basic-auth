@@ -70,6 +70,10 @@ class TwillHttpBasicAuth
             return null;
         }
 
+        $debug = [
+            $this->hasDotEnv() , $this->config($configKey) , $this->readFromDatabase($databaseColumn)
+        ];
+
         return $this->hasDotEnv() ? $this->config($configKey) : $this->readFromDatabase($databaseColumn);
     }
 

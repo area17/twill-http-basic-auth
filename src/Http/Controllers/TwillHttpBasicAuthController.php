@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Redirect;
 use A17\Twill\Http\Controllers\Admin\ModuleController;
@@ -123,5 +124,18 @@ class TwillHttpBasicAuthController extends ModuleController
         }
 
         return parent::getIndexItems($scopes, $forcePagination);
+    }
+
+    public function publish(): JsonResponse
+    {
+        $data = request()->all();
+
+        if (($data['active'] ?? null) === null) {
+            $data['active'] = false;
+
+            request()->merge($data);
+        }
+
+        return parent::publish();
     }
 }

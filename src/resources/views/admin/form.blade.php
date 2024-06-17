@@ -14,6 +14,7 @@
         'label' => 'Username',
         'required' => true,
         'disabled' => $twillHttpBasicAuth::hasDotEnv(),
+        'note' => 'Mandatory to publish the domain',
     ])
 
     @formField('input', [
@@ -22,6 +23,7 @@
         'label' => 'Password',
         'required' => true,
         'disabled' => $twillHttpBasicAuth::hasDotEnv(),
+        'note' => 'Mandatory to publish the domain',
         'password' => true,
     ])
 

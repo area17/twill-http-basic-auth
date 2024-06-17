@@ -25,6 +25,11 @@ class TwillHttpBasicAuth extends Model
 
     protected $appends = ['domain_string', 'status', 'from_dot_env'];
 
+    public function __toString()
+    {
+        return ''; // Bad fix for the blank() method that calls this recursively
+    }
+
     public function getUsernameAttribute(): string|null
     {
         return $this->decrypt(
