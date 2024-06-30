@@ -2,11 +2,11 @@
 
 namespace A17\TwillHttpBasicAuth\Support;
 
+use stdClass;
 use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
-use A17\HttpBasicAuth\Middleware;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Client\Response;
-use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\View;
 use A17\HttpBasicAuth\HttpBasicAuth;
 use Illuminate\Support\Facades\RateLimiter;
@@ -28,7 +28,17 @@ class TwillHttpBasicAuth
 
     protected Response|null $http_basic_authResponse = null;
 
-    protected TwillHttpBasicAuthModel|null $current = null;
+    protected TwillHttpBasicAuthModel|\stdClass|null $current = null;
+
+    public function __construct()
+    {
+        \Log::info('construct');
+    }
+
+    public function debug(): bool
+    {
+        return $this->enabled() || $this->allDomainsEnabled();
+    }
 
     public function config(string|null $key = null, mixed $default = null): mixed
     {
@@ -79,16 +89,11 @@ class TwillHttpBasicAuth
 
     protected function readFromDatabase(string $key): string|bool|null
     {
-        if (blank($this->current)) {
-            $domains = app(TwillHttpBasicAuthRepository::class)
-                ->published()
+        if ($this->current === null) {
+            $domains = DB::table('twill_basic_auth')
+                ->where('published', true)
                 ->orderBy('domain')
                 ->get();
-
-            $domains = $domains->filter(
-                fn($domain) => filled($domain->getAttributes()['username']) &&
-                    filled($domain->getAttributes()['password']),
-            );
 
             if ($domains->isEmpty()) {
                 return null;
@@ -97,21 +102,29 @@ class TwillHttpBasicAuth
             /** @var TwillHttpBasicAuthModel|null $domain */
             $domain = $domains->first();
 
-            if ($domain !== null && $domain->domain === '*') {
-                $this->current = $domain;
-            } else {
+            if ($domain === null || $domain->domain !== '*') {
                 /** @var TwillHttpBasicAuthModel|null $domain */
                 $domain = $domains->firstWhere('domain', $this->getDomain());
-
-                $this->current = $domain;
             }
+
+            $this->current = $domain;
         }
 
         if ($this->current === null) {
             return null;
         }
 
-        return $this->decrypt($this->current->getAttributes()[$key]);
+        if ($this->current instanceof StdClass) {
+            $attributes = (array) $this->current;
+        } else {
+            $attributes = $this->current->getAttributes();
+        }
+
+        if ($key === 'published' && ($attributes['username'] === null || $attributes['password'] === null)) {
+            return false;
+        }
+
+        return $this->decrypt($attributes[$key]);
     }
 
     public function hasDotEnv(): bool
