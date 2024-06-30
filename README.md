@@ -70,10 +70,15 @@ public function register()
 
 #### Configuring via the `.env` file
 
-You can configure it both via CMS settings or the on `.env` file. If you set them on `.env` the CMS settings will be disabled and overloded by the `.env`.
+This package is disabled by default, so you must enabled it in your .env file:
 
 ```dotenv
 TWILL_HTTP_BASIC_AUTH_ENABLED=true
+```
+
+You can configure credentials both via CMS settings or the on `.env` file. If you set them on `.env` the `*` domain will be enabled, all other domains hidden, and the username and password overloaded by the `.env` keys.
+
+```dotenv
 TWILL_HTTP_BASIC_AUTH_USERNAME=frontend
 TWILL_HTTP_BASIC_AUTH_PASSWORD=secret
 ```
@@ -86,7 +91,7 @@ TWILL_HTTP_BASIC_AUTH_TWILL_DATABASE_LOGIN_ENABLED=true
 TWILL_HTTP_BASIC_AUTH_LARAVEL_DATABASE_LOGIN_ENABLED=true
 ```
 
-### Rate limting
+### Rate limiting
 
 The package will also, by default, rate limit users to max of 500 requests per minute to each domain. You can configure it using this `.env` variable: 
 
