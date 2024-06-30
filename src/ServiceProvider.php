@@ -23,7 +23,7 @@ class ServiceProvider extends TwillPackageServiceProvider
 
         $this->registerConfig();
 
-        $this->configureMiddeleware();
+        $this->configureMiddleware();
 
         parent::boot();
     }
@@ -59,7 +59,7 @@ class ServiceProvider extends TwillPackageServiceProvider
         ]);
     }
 
-    public function configureMiddeleware(): void
+    public function configureMiddleware(): void
     {
         if (config('twill-http-basic-auth.middleware.automatic')) {
             /**
