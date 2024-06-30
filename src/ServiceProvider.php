@@ -6,8 +6,6 @@ use Illuminate\Support\Str;
 use A17\Twill\Facades\TwillCapsules;
 use Illuminate\Contracts\Http\Kernel;
 use A17\Twill\TwillPackageServiceProvider;
-use A17\TwillHttpBasicAuth\Http\Middleware;
-use A17\TwillHttpBasicAuth\Services\Helpers;
 use A17\TwillHttpBasicAuth\Support\TwillHttpBasicAuth;
 
 class ServiceProvider extends TwillPackageServiceProvider
