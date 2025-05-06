@@ -124,7 +124,7 @@ class TwillHttpBasicAuth
             return false;
         }
 
-        return $this->decrypt($attributes[$key]);
+        return $this->decrypt($attributes[$key] ?? '');
     }
 
     public function hasDotEnv(): bool
