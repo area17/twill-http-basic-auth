@@ -30,11 +30,6 @@ class TwillHttpBasicAuth
 
     protected TwillHttpBasicAuthModel|\stdClass|null $current = null;
 
-    public function __construct()
-    {
-        \Log::info('construct');
-    }
-
     public function debug(): bool
     {
         return $this->enabled() || $this->allDomainsEnabled();
